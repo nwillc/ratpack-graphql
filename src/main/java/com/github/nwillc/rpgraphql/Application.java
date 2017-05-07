@@ -9,16 +9,16 @@ public class Application {
     private static final Logger LOGGER = Logger.getLogger(Application.class.getSimpleName());
 
     public static void main(String[] args) throws Exception {
-        LOGGER.info("Start");
         new Application(args);
-        LOGGER.info("Finish");
     }
 
     private Application(String[] args) throws Exception {
+        LOGGER.info("Start");
         final RatpackServer server = RatpackServer.of(s -> s
                 .handlers(chain -> chain
                         .post("graphql", new GraphQLHandler())));
         server.start();
+        LOGGER.info("Finish");
     }
 
 }
