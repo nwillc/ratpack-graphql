@@ -1,0 +1,6 @@
+{
+  "query": "mutation($name: String! ){ deleteCompany ( name: $name ) { name revenue } }",
+  "variables": {
+    "name": "Acme"
+  }
+}

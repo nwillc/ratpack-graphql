@@ -1,6 +1,5 @@
 package com.github.nwillc.rpgraphql.graphql;
 
-import com.github.nwillc.rpgraphql.handlers.GraphQLHandler;
 import com.github.nwillc.rpgraphql.model.Company;
 import graphql.annotations.GraphQLField;
 import graphql.annotations.GraphQLName;
@@ -9,6 +8,8 @@ import graphql.schema.DataFetchingEnvironment;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+
+import static com.github.nwillc.rpgraphql.handlers.GraphQLHandler.getCompanies;
 
 @GraphQLName(Schema.QUERY)
 public class Query {
@@ -28,7 +29,5 @@ public class Query {
         return any.orElse(null);
     }
 
-    private static List<Company> getCompanies(DataFetchingEnvironment env) {
-        return ((GraphQLHandler) env.getSource()).getCompanies();
-    }
+
 }

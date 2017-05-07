@@ -10,10 +10,9 @@ import static graphql.schema.GraphQLSchema.newSchema;
  */
 public class Schema {
     public static final String COMPANY = "company";
-    public static final String PRODUCT = "product";
     public static final String QUERY = "query";
-    public static final String ID = "id";
     public static final String NAME = "name";
+    public static final String REVENUE = "revenue";
     public static final String MUTATION = "mutation";
 
     private final GraphQLSchema schema;
@@ -21,6 +20,7 @@ public class Schema {
     public Schema() throws IllegalAccessException, NoSuchMethodException, InstantiationException {
         schema = newSchema()
                 .query(GraphQLAnnotations.object(Query.class))
+                .mutation(GraphQLAnnotations.object(Mutation.class))
                 .build();
     }
 

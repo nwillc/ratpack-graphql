@@ -5,11 +5,26 @@ import graphql.annotations.GraphQLField;
 import graphql.annotations.GraphQLName;
 
 @GraphQLName(Schema.COMPANY)
-public class Company extends Entity {
+public class Company {
     private final String name;
+    private Integer revenue;
 
     public Company(String name) {
+        this(name, 0);
+    }
+
+    public Company(String name, Integer revenue) {
         this.name = name;
+        this.revenue = revenue;
+    }
+
+    @GraphQLField
+    public Integer getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(Integer revenue) {
+        this.revenue = revenue;
     }
 
     @GraphQLField
@@ -17,11 +32,4 @@ public class Company extends Entity {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id='" + getId() +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

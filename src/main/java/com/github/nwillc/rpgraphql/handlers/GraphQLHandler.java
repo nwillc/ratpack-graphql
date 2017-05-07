@@ -4,9 +4,11 @@ import com.github.nwillc.rpgraphql.graphql.Schema;
 import com.github.nwillc.rpgraphql.model.Company;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
+import graphql.schema.DataFetchingEnvironment;
 import ratpack.handling.Context;
 import ratpack.handling.Handler;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +22,9 @@ public class GraphQLHandler implements Handler {
     private static final String ERRORS = "errors";
     private static final String DATA = "data";
     private final GraphQL graphql;
+    private final List<Company> companies = new ArrayList<>();
 
-    private final List<Company> companies;
-
-    public GraphQLHandler(List<Company> companies) throws Exception {
-        this.companies = companies;
+    public GraphQLHandler() throws Exception {
         graphql = new GraphQL(new Schema().getSchema());
     }
 
@@ -39,7 +39,7 @@ public class GraphQLHandler implements Handler {
                 result.put(DATA, executionResult.getData());
             } else {
                 result.put(ERRORS, executionResult.getErrors());
-                LOGGER.warning("Errors: " +  executionResult.getErrors());
+                LOGGER.warning("Errors: " + executionResult.getErrors());
             }
             context.render(json(result));
         });
@@ -47,5 +47,9 @@ public class GraphQLHandler implements Handler {
 
     public List<Company> getCompanies() {
         return companies;
+    }
+
+    public static List<Company> getCompanies(DataFetchingEnvironment env) {
+        return ((GraphQLHandler) env.getSource()).getCompanies();
     }
 }

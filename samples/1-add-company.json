@@ -1,0 +1,7 @@
+{
+  "query": "mutation($name: String! $revenue: String! ){ addCompany ( name: $name revenue: $revenue) { name revenue } }",
+  "variables": {
+    "name": "Acme",
+    "revenue": 300
+  }
+}

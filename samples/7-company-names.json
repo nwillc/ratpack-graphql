@@ -1,0 +1,4 @@
+{
+  "query": "{ companies { name }}",
+  "variables": {}
+}
