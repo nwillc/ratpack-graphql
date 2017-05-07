@@ -1,12 +1,14 @@
 package com.github.nwillc.rpgraphql.handlers;
 
 import com.github.nwillc.rpgraphql.graphql.Schema;
+import com.github.nwillc.rpgraphql.model.Company;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import ratpack.handling.Context;
 import ratpack.handling.Handler;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -19,7 +21,10 @@ public class GraphQLHandler implements Handler {
     private static final String DATA = "data";
     private final GraphQL graphql;
 
-    public GraphQLHandler() throws Exception {
+    private final List<Company> companies;
+
+    public GraphQLHandler(List<Company> companies) throws Exception {
+        this.companies = companies;
         graphql = new GraphQL(new Schema().getSchema());
     }
 
@@ -38,5 +43,9 @@ public class GraphQLHandler implements Handler {
             }
             context.render(json(result));
         });
+    }
+
+    public List<Company> getCompanies() {
+        return companies;
     }
 }

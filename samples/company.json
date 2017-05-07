@@ -1,4 +1,6 @@
 {
-  "query": "{ companies { name id }}",
-  "variables": {}
+  "query": "query($name: String!){ company ( name: $name ) { name id } }",
+  "variables": {
+    "name": "Spacely Sprockets"
+  }
 }
