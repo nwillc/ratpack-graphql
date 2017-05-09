@@ -2,9 +2,9 @@
 
 A concise example of a GraphQL server implemented with:
 
-- Ratpack
-- GraphQL Java
-- GraphQL Annotations
+- [Ratpack](https://ratpack.io/)
+- [GraphQL Java](https://github.com/graphql-java/graphql-java)
+- [GraphQL Annotations](https://github.com/graphql-java/graphql-java-annotations)
 
 ## Running
 
@@ -17,3 +17,7 @@ A concise example of a GraphQL server implemented with:
 ```bash
 ./test.sh
 ```
+
+## See Also
+
+This concise example is based on [my snippets server](https://github.com/nwillc/mysnipserver) project.
