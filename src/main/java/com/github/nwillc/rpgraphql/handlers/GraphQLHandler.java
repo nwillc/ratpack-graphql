@@ -24,17 +24,15 @@ import graphql.GraphQL;
 import graphql.schema.DataFetchingEnvironment;
 import ratpack.handling.Context;
 import ratpack.handling.Handler;
-
+import org.pmw.tinylog.Logger;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import static ratpack.jackson.Jackson.json;
 
 public class GraphQLHandler implements Handler {
-    private static final Logger LOGGER = Logger.getLogger(GraphQLHandler.class.getSimpleName());
     private static final String QUERY = "query";
     private static final String ERRORS = "errors";
     private static final String DATA = "data";
@@ -42,13 +40,14 @@ public class GraphQLHandler implements Handler {
     private final List<Company> companies = new ArrayList<>();
 
     public GraphQLHandler() throws Exception {
-        graphql = new GraphQL(new Schema().getSchema());
+        graphql = GraphQL.newGraphQL(new Schema().getSchema()).build();
     }
 
     @Override
     public void handle(Context context) throws Exception {
-        LOGGER.info("GraphQLHandler.handle");
+        Logger.info("GraphQLHandler.handle");
         context.parse(Map.class).then(payload -> {
+            @SuppressWarnings("unchecked")
             Map<String, Object> variables = (Map<String, Object>) payload.get("variables");
             ExecutionResult executionResult = graphql.execute(payload.get(QUERY).toString(), null, this, variables);
             Map<String, Object> result = new LinkedHashMap<>();
@@ -56,7 +55,7 @@ public class GraphQLHandler implements Handler {
                 result.put(DATA, executionResult.getData());
             } else {
                 result.put(ERRORS, executionResult.getErrors());
-                LOGGER.warning("Errors: " + executionResult.getErrors());
+                Logger.warn("Errors: " + executionResult.getErrors());
             }
             context.render(json(result));
         });
