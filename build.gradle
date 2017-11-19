@@ -9,16 +9,18 @@ repositories {
 }
 
 dependencies {
-    compile "com.graphql-java:graphql-java-annotations:$graphql_version",
+    compile "com.graphql-java:graphql-java:$graphql_version",
             "io.ratpack:ratpack-core:$ratpack_version",
-            "com.graphql-java:graphql-java-annotations:$graphql_version",
             "org.tinylog:tinylog:$tiny_log_version"
 
     runtime "org.tinylog:slf4j-binding:$slf4j_version"
+
+    testCompile "junit:junit:$junit_version",
+            "org.assertj:assertj-core:$assertj_version"
 }
 
 group = 'com.github.nwillc'
-version = '0.0.2-SNAPSHOT'
+version = '0.2.0-SNAPSHOT'
 targetCompatibility = '1.8'
 sourceCompatibility = '1.8'
 mainClassName = 'com.github.nwillc.rpgraphql.Application'

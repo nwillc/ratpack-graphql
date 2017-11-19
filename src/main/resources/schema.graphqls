@@ -1,0 +1,19 @@
+schema {
+    query: QueryType
+    mutation: MutationType
+}
+
+type QueryType {
+    company( name: ID!) : Company
+    companies : [ Company ]
+}
+
+type MutationType {
+    company( name: ID! revenue: Int!): Company
+    deleteCompany( name: ID! ): Boolean
+}
+
+type Company {
+    name: ID!
+    revenue: Int!
+}
