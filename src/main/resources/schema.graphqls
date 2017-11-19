@@ -10,7 +10,7 @@ type QueryType {
 
 type MutationType {
     company( name: ID! revenue: Int!): Company
-    deleteCompany( name: ID! ): Boolean
+    companyDelete( name: ID! ): Boolean
 }
 
 type Company {
