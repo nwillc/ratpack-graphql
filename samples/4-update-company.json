@@ -1,5 +1,5 @@
 {
-  "query": "mutation($name: String! $revenue: String! ){ updateCompany ( name: $name revenue: $revenue) { name revenue } }",
+  "query": "mutation($name: ID! $revenue: Int! ){ company ( name: $name revenue: $revenue) { name revenue } }",
   "variables": {
     "name": "Cogswell Cogs",
     "revenue": 1000

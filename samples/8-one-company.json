@@ -1,5 +1,5 @@
 {
-  "query": "query($name: String!){ company ( name: $name ) { name revenue } }",
+  "query": "query($name: ID!){ company ( name: $name ) { name revenue } }",
   "variables": {
     "name": "Spacely Sprockets"
   }

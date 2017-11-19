@@ -8,6 +8,7 @@
 
 package com.github.nwillc.rpgraphql.graphql;
 
+import com.github.nwillc.rpgraphql.graphql.fetchers.CompaniesQuery;
 import com.github.nwillc.rpgraphql.graphql.fetchers.CompanyDelete;
 import com.github.nwillc.rpgraphql.graphql.fetchers.CompanyMutation;
 import com.github.nwillc.rpgraphql.graphql.fetchers.CompanyQuery;
@@ -21,6 +22,7 @@ public class RuntimeWiringFactory {
         return RuntimeWiring.newRuntimeWiring()
                 .type("QueryType", wiring -> wiring
                         .dataFetcher("company", new CompanyQuery(companies))
+                        .dataFetcher("companies", new CompaniesQuery(companies))
                 )
                 .type("MutationType", wiring -> wiring
                         .dataFetcher("company", new CompanyMutation(companies))
