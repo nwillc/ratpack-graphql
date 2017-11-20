@@ -4,7 +4,7 @@ A concise example of a GraphQL server implemented with:
 
 - [Ratpack](https://ratpack.io/)
 - [GraphQL Java](https://github.com/graphql-java/graphql-java)
-- [GraphQL Annotations](https://github.com/graphql-java/graphql-java-annotations)
+
 
 ## Running
 
